@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Menu Card</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+  <!-- Local StyleSheet -->
+ <link href="./style.css" rel="stylesheet"/>
+  
+  <!--Marker Handler Src-->
+  <script src="./js/markerHandler.js"></script>
+  <script src="./js/addMarkers.js"></script>
+  <script src="./js/addButtons.js"></script>
+
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene 
+    embedded vr-mode-ui="enabled: false"     
+    arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;debugUIEnabled: false;"
+    gesture-detector create-buttons>
+
+    <!-- Camera -->
+    <a-entity camera></a-entity>
+    <a-assets >
+      <a-asset-item id="crane-model" src="scene.gltf"></a-asset-item>
+    </a-assets>
+    
+    <a-marker id="crane-marker" type="pattern" 
+    url="assets/dish-markers/pattern-crane.patt" cursor="rayOrigin: mouse">
+
+      <a-entity id="crane-3D-model" position="-1 0 0" scale="0.05 0.05 0.05"
+      gltf-model="#crane-model" gesture-handler>
+
+      </a-entity>
+      
+      <a-plane position ="0 0 0" width="1.5" height="1.5" rotation="-90 0 0">
+        <a-plane position="0 0.89 0.02" width="1.49" height="0.3" rotation="0 0 0" color="#f0c30f">
+          <a-entity position="0 0 0.1" rotation="0 0 0" 
+          text="font:monoid;value:Hydraulic Crane;color:black;width:1.8;height:1;align:center;"></a-entity>
+        </a-plane>
+        <a-entity position="0 0 0.1" rotation="0 0 0" 
+        text="font:monoid;value:PULL BACK AND GO:Friction powered crane truck toy /n, 360 degree rotating left and right/n machine can pull up and down /n swing left and right/n High Quality Material:
+        Funblast crane toy is made up of 100% high quality abs plastics and metal shovers wich is durable, /n light and non - toxic with a strong crash resistance. ;color:black;width:2;align:center;"></a-entity>
+      </a-plane>
+    </a-marker>
+    
+  </a-scene>
+
+  <!-- Button Main Div -->
+ <div id="button-div"></div>
+</body>
+
+</html>
